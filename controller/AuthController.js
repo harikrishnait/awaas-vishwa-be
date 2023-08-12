@@ -101,7 +101,13 @@ const loginUser = async (req, res) => {
     res
       .cookie("token", token, { httpOnly: true })
       .status(200)
-      .json({ success: "User Logger In" });
+      .json({
+        success: "User Logged In",
+        data: {
+          userId: userDoc._id,
+          username: userDoc.username,
+        },
+      });
   } catch (err) {
     res.end("err");
   }
