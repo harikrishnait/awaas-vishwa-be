@@ -5,9 +5,21 @@ const cors = require("cors");
 const healthRoute = require("./routes/HealthRoute");
 const authRoutes = require("./routes/AuthRoutes");
 
+var whitelist = ["http://localhost:5176" /** other domains if any */];
+var corsOptions = {
+  credentials: true,
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.DATABASE_URL);
 mongoose.connection.once("connected", () => console.log("Database Connected"));
