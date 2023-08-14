@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:5173", "https://awaas-vishwa-hari.vercel.app"],
+    origin: ["https://awaas-vishwa-hari.vercel.app"],
   })
 );
 
