@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: ["https://awaas-vishwa-hari.vercel.app"],
+    origin: ["http://localhost:5173", "https://awaas-vishwa-hari.vercel.app"],
   })
 );
 
@@ -20,3 +20,5 @@ mongoose.connection.on("error", (er) => console.log("Database Error:", er));
 
 app.use("/health", healthRoute);
 app.use("/api/v1/auth", authRoutes);
+
+app.listen(3000, () => console.log("application is running on 3000 port"));
